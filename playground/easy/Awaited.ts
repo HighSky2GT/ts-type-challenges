@@ -17,9 +17,8 @@
 /* _____________ 你的代码 _____________ */
 
 type MyAwaited<T extends PromiseLike<any>> = T extends PromiseLike<infer U> 
-                                            ? U extends PromiseLike<any> 
-                                            ? MyAwaited<U> : U
-                                            : never
+? U extends PromiseLike<any> ? MyAwaited<U> : U
+: never
 // 笔记
 // infer: 在 extends 条件语句中待推断的类型变量。
 
