@@ -28,8 +28,8 @@
 // 答题
 type MyReadonly<T> = { readonly [key in keyof T]: T[key] }
 /* 笔记
-   - readonly关键字：属性修饰符，把一个属性变成只读的，必须在声明的时候或者在类中对它进行初始化。
-     -- 可以在 class interface type array-like 中使用它，也可以用来定义一个函数的参数
+   1. readonly关键字：属性修饰符，把一个属性变成只读的，必须在声明的时候或者在类中对它进行初始化。
+      可以在 class interface type array-like 中使用它，也可以用来定义一个函数的参数
  */
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

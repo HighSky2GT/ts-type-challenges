@@ -20,8 +20,13 @@
 */
 
 /* _____________ 你的代码 _____________ */
-
-type Length<T> = any
+// 题目
+// type Length<T> = any
+// 答题
+type Length<T extends readonly any[]> = T['length']
+// 笔记
+// 需求是接受只读数组，所以要限制泛型类型。
+// 数组的length是数组的一个属性，限制类型后自然就可以通过T['length']获取
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

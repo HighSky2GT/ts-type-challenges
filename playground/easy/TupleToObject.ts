@@ -8,12 +8,18 @@
   const tuple = ['tesla', 'model 3', 'model X', 'model Y'] as const
   type result = TupleToObject<typeof tuple> // expected { tesla: 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y'}
   ```
-  > 在 Github 上查看：https://tsch.js.org/11/zh-CN
 */
 
 /* _____________ 你的代码 _____________ */
-
-type TupleToObject<T extends readonly any[]> = any
+// 题目
+// type TupleToObject<T extends readonly any[]> = any
+// 答题
+type TupleToObject<T extends readonly (string|symbol|number)[]> = {[key in T[number]]:key}
+/** 笔记
+ * 1. 对象属性的数据类型只能是string/symbol/number，所以把数组的值转换成对象属性时要限制数组的数据类型
+ *    限制泛型是(string|symbol|number)的数组
+ * 2. 使用 [key in T[number]]来根据下标获取值，返回对象
+ */
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
