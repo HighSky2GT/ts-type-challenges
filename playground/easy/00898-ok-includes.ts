@@ -1,27 +1,28 @@
 /*
   898 - Includes
   -------
-  by null (@kynefuk) #简单 #array
-
   ### 题目
-
-  在类型系统里实现 JavaScript 的 `Array.includes` 方法，这个类型接受两个参数，返回的类型要么是 `true` 要么是 `false`。
-
+  在类型系统里实现 JavaScript 的 `Array.includes` 方法，
+  这个类型接受两个参数，返回的类型要么是 `true` 要么是 `false`。
   例如：
-
   ```ts
   type isPillarMen = Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Dio'> // expected to be `false`
   ```
-
   > 在 Github 上查看：https://tsch.js.org/898/zh-CN
 */
 
 /* _____________ 你的代码 _____________ */
+import type { Equal, Expect } from '@type-challenges/utils'
 
-type Includes<T extends readonly any[], U> = any
+type Includes<T extends readonly any[], U> = T extends [infer L,...infer P] 
+? Equal<U,L> extends true 
+? true : Includes<P,U> 
+:false
+// 笔记
+// 思路：要判断是否includes，递归对比U在T中的每项，满足类型相等或者对比完T中所有类型时退出递归，返回结果
+
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
 
 type cases = [
   Expect<Equal<Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Kars'>, true>>,
